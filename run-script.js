@@ -108,5 +108,33 @@ function clearFeedback(whereTo) {
 }
 
 function talkInGroup() {
+  let time = 0;
+  let totalTime = 5000;
   console.log("talk in group");
+
+  $("#feedbackContainer").html("Talk among your group about what you learned:")
+  $("#feedbackContainer").append("<p></p>"+"<p></p>"+"<p></p>"+"<p></p>");
+
+  $("#feedbackContainer").append("<p id='timer'>"+totalTime/1000+"</p>");
+
+  
+  let timer = setInterval(function(){
+    time += 1000;
+    $("#timer").html( (totalTime - time) / 1000);
+    if(time >= totalTime) {
+      clearInterval(timer);
+
+      $("#timer").hide();
+      $("#feedbackContainer").append("<button id='goToQuiz' class='btn btn-secondary'>Take a Quiz!</button>")
+
+      $("#goToQuiz").click(function(){
+        quiz();
+      });
+    }
+  },1000);
+
+}
+
+function quiz() {
+  console.log("doing quiz");
 }

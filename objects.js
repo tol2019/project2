@@ -221,7 +221,7 @@ let questions = [
                 "image": "",
                 "description": "It removes material to make a point",
                 "answer": true,
-                "feedback": "Incorrect. This shape is not pointed so grinding in this shape will result in a round knife that will not cut.",
+                "feedback": "Correct!",
                 "whereTo": ""
             },
             {
