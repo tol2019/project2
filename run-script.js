@@ -1,9 +1,11 @@
 let studentId = "";
 let scene = 0;
 let expertQuizQuestions = {};
+let finalQuizQuestions = {};
 let startTime = 0;
 let endTime = 0;
 let qIndex = 0;
+let inQuiz = false;
 
 $(document).ready(function () {
   // $("#button-container").hide();
@@ -22,13 +24,13 @@ function chooseStudent() {
       studentId = "stuA";
       startTime = 120;
       endTime = 122;
-      expertQuizQuestions = questions.filter(i => i.name.substr(0, 5) === "grind");
+      currentQuestions = questions.filter(i => i.name.substr(0, 5) === "grind");
       console.log(expertQuizQuestions);
     } else if (this.id === "stuB") {
       studentId = "stuB";
       startTime = 140;
       endTime = 142;
-      expertQuizQuestions = questions.filter(i => i.name.substr(0, 6) === "honing");
+      currentQuestions = questions.filter(i => i.name.substr(0, 6) === "honing");
     } else {
 
     }
@@ -49,37 +51,39 @@ function instruction() {
 function checkUnderstanding() {
   console.log("quiz01");
   $("#player").hide();
-  console.log(expertQuizQuestions);
-
-
-  makeQuestion(expertQuizQuestions[qIndex]);
+  // console.log(expertQuizQuestions);
+  makeQuestion(currentQuestions);
 }
 
 
-function makeQuestion(question) {
-  $("#currQuestion").text(question.text);
-  makeButtons(question.buttons);
-  $("#questionContainer").show("slow");
-}
+function makeQuestion(questions) {
+  $("#currQuestion").text(questions[qIndex].text);
+  // makeButtons(questions);
 
-function makeButtons(buttons) {
+  let buttons = questions[qIndex].buttons
   $("#buttonContainer").empty();
-
   buttons.forEach(b => {
     $("<button/>", {
       id: b.id,
       text: b.description,
     })
-      .attr("onClick", "giveFeedback(\"" + b.answer + "\",\"" + b.feedback + "\",\"" + b.whereTo + "\")")
+      .attr("onClick", "giveFeedback(\"" + questions + "\",\"" + b.answer + "\",\"" + b.feedback + "\",\"" + b.whereTo + "\")")
       .appendTo("#buttonContainer")
 
     if (b.image != "") {
       $("<img>", { src: b.image }).appendTo("#" + b.id)
     }
   });
+  $("#questionContainer").show("slow");
+
 }
 
-function giveFeedback(cor, words, whereTo) {
+function makeButtons(questions) {
+  
+}
+
+function giveFeedback(questions, cor, words, whereTo) {
+  console.log("feedback", JSON.stringify(questions));
   $("#questionContainer").hide()
 
   if (cor == 'true') {
@@ -95,16 +99,18 @@ function giveFeedback(cor, words, whereTo) {
   $("<p/>", { text: words }).appendTo("#feedbackContainer")
 
   $("<button/>", { text: "Continue" })
-    .attr("onClick", "clearFeedback(\"" + whereTo + "\")")
+    .attr("onClick", "clearFeedback(\"" + questions + "\")")
     .appendTo("#feedbackContainer");
 }
 
 
-function clearFeedback(whereTo) {
+function clearFeedback(questions) {
+  console.log("feedback", questions);
   $("#feedbackContainer").empty();
   qIndex += 1;
-  if (qIndex < expertQuizQuestions.length) makeQuestion(expertQuizQuestions[qIndex]);
-  else talkInGroup();
+  if (qIndex < currentQuestions.length) makeQuestion(currentQuestions);
+  else if ( !inQuiz ) talkInGroup();
+  else if (inQuiz) quizFeedback();
 }
 
 function talkInGroup() {
@@ -112,10 +118,10 @@ function talkInGroup() {
   let totalTime = 5000;
   console.log("talk in group");
 
-  $("#feedbackContainer").html("Talk among your group about what you learned:")
-  $("#feedbackContainer").append("<p></p>"+"<p></p>"+"<p></p>"+"<p></p>");
+  $("#teach").html("Talk among your group about what you learned:")
+  $("#teach").append("<p></p>"+"<p></p>"+"<p></p>"+"<p></p>");
 
-  $("#feedbackContainer").append("<p id='timer'>"+totalTime/1000+"</p>");
+  $("#teach").append("<p id='timer'>"+totalTime/1000+"</p>");
 
   
   let timer = setInterval(function(){
@@ -125,7 +131,7 @@ function talkInGroup() {
       clearInterval(timer);
 
       $("#timer").hide();
-      $("#feedbackContainer").append("<button id='goToQuiz' class='btn btn-secondary'>Take a Quiz!</button>")
+      $("#teach").append("<button id='goToQuiz' class='btn btn-secondary'>Take a Quiz!</button>")
 
       $("#goToQuiz").click(function(){
         quiz();
@@ -136,5 +142,16 @@ function talkInGroup() {
 }
 
 function quiz() {
+  inQuiz = true;
+  qIndex = 0;
   console.log("doing quiz");
+
+  $("#teach").hide();
+  console.log(questions);
+  currentQuestions = questions;
+  makeQuestion(currentQuestions);
+}
+
+function quizFeedback() {
+  console.log("quizFeedback");
 }
