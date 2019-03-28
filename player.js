@@ -15,7 +15,7 @@ var player;
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
     videoId: 'YAyjVtHm418',
-    playerVars: { 'autoplay': 0, 'wmode': 'transparent', 'controls': 1, 'rel': 0, 'modestbranding': 1, 'showinfo': 0 },
+    playerVars: { 'autoplay': 0, 'wmode': 'transparent', 'controls': 0, 'rel': 0, 'modestbranding': 1, 'showinfo': 0 },
     events: {
       'onReady': onPlayerReady,
       'onStateChange': onPlayerStateChange,
@@ -46,7 +46,9 @@ function onPlayerStateChange(event) {
   switch(scene) {
     case 0:
       chooseStudent();
-      scene += 1;
+      break;
+    case 2:
+      checkUnderstanding();
       break;
 
     default:
@@ -74,6 +76,8 @@ function getPlayerTime() {
   return player.getCurrentTime();
 }
 
+
+// function from project one, might still be useful
 function loadVideo(id, startSeconds, endSeconds, suggestedQuality) {
   player.loadVideoById({
     'videoId': id,
@@ -88,8 +92,8 @@ function loadVideo(id, startSeconds, endSeconds, suggestedQuality) {
   calculateTime(startSeconds, endSeconds, videoLength);
 }
 
+// function from project one. might still be useful
 function calculateTime(start, end, videoLength) {
-  startedCalculating = true;
   let length = 0;
   console.log(videoLength);
 
@@ -97,14 +101,7 @@ function calculateTime(start, end, videoLength) {
 
   var interval = setInterval(function () {
     console.log(player.getCurrentTime());
-    if (player.getPlayerState() === 2) { // paused
-      paused = true;
-    }
     if (player.getPlayerState() === 1) { // playing
-      paused = false;
-    }
-
-    if (!paused) {
       length += 500;
     }
     // console.log(length);
@@ -113,10 +110,12 @@ function calculateTime(start, end, videoLength) {
     if (player.getCurrentTime() >= end) {
       
       stopVideo();
-      startedCalculating = false;
 
       clearInterval(interval);
       console.log("interval cleared");
+
+      if (scene === 1) scene = 2;
+
     }
 
     $("#next").click(function () {

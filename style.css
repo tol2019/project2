@@ -4,7 +4,16 @@ body {
   margin: 0px;
   padding: 0px;
 }
+#title {
+  margin-top: 0;
+}
 
+#container{
+  border: 1px solid #444;
+  border-radius: 10px;
+  width: 1000px;
+  height: 800px;
+}
 .studentId div {
   text-align: center;
   margin: auto;
@@ -16,11 +25,11 @@ body {
 
 .centered {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   margin: auto;
   width: 640px;
-  height: 390px;
   padding-top: 50px;
 }
 
