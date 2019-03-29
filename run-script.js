@@ -171,7 +171,17 @@ function quiz() {
 
 function quizFeedback() {
   console.log("quizFeedback");
-
   console.log("quizSelf:", quizSelf);
   console.log("quizOthers:", quizOthers);
+
+  let selfScore = 0, othersScore = 0;
+
+  for (let i in quizSelf) {
+    if (quizSelf[i] === "true") selfScore += 10
+  }
+  for (let i in quizOthers) {
+    if (quizOthers[i] === "true") othersScore += 20
+  }
+
+  console.log("score", selfScore + othersScore);
 }
