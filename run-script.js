@@ -6,12 +6,12 @@ let startTime = 0;
 let endTime = 0;
 let qIndex = 0;
 let inQuiz = false;
+let quizSelf = [];
+let quizOthers = [];
 
 $(document).ready(function () {
   // $("#button-container").hide();
   $("#player").hide();
-
-
 });
 
 function chooseStudent() {
@@ -78,29 +78,45 @@ function makeQuestion(questions) {
 
 }
 
-function makeButtons(questions) {
-  
-}
+// function makeButtons(questions) {
+
+// }
 
 function giveFeedback(questions, cor, words, whereTo) {
   console.log("feedback", JSON.stringify(questions));
   $("#questionContainer").hide()
 
-  if (cor == 'true') {
-    $("<h1/>", { text: "Correct!" })
-      .css('background-color', '#99ff99')
+  if (!inQuiz) {
+    if (cor === 'true') {
+      $("<h1/>", { text: "Correct!" })
+        .css('background-color', '#99ff99')
+        .appendTo("#feedbackContainer");
+    } else {
+      $("<h1/>", { text: "That's not correct..." })
+        .css('background-color', '#ff6699')
+        .appendTo("#feedbackContainer");
+
+      currentQuestions.push(currentQuestions[qIndex]);
+    }
+    $("<p/>", { text: words }).appendTo("#feedbackContainer");
+
+    $("<button/>", { text: "Continue" })
+      .attr("onClick", "clearFeedback(\"" + questions + "\")")
       .appendTo("#feedbackContainer");
+
   } else {
-    $("<h1/>", { text: "That's not correct..." })
-      .css('background-color', '#ff6699')
-      .appendTo("#feedbackContainer");
+    
+    if (studentId === "stuA" && currentQuestions[qIndex].name.startsWith("grind") ||
+      studentId === "stuB" && currentQuestions[qIndex].name.startsWith("hon")
+    ) {
+      quizSelf.push(cor);
+    } else {
+      quizOthers.push(cor);
+    }
+    clearFeedback();
   }
 
-  $("<p/>", { text: words }).appendTo("#feedbackContainer")
 
-  $("<button/>", { text: "Continue" })
-    .attr("onClick", "clearFeedback(\"" + questions + "\")")
-    .appendTo("#feedbackContainer");
 }
 
 
@@ -108,8 +124,9 @@ function clearFeedback(questions) {
   console.log("feedback", questions);
   $("#feedbackContainer").empty();
   qIndex += 1;
-  if (qIndex < currentQuestions.length) makeQuestion(currentQuestions);
-  else if ( !inQuiz ) talkInGroup();
+  if (qIndex < currentQuestions.length) {
+    makeQuestion(currentQuestions);
+  } else if (!inQuiz) talkInGroup();
   else if (inQuiz) quizFeedback();
 }
 
@@ -119,25 +136,25 @@ function talkInGroup() {
   console.log("talk in group");
 
   $("#teach").html("Talk among your group about what you learned:")
-  $("#teach").append("<p></p>"+"<p></p>"+"<p></p>"+"<p></p>");
+  $("#teach").append("<p></p>" + "<p></p>" + "<p></p>" + "<p></p>");
 
-  $("#teach").append("<p id='timer'>"+totalTime/1000+"</p>");
+  $("#teach").append("<p id='timer'>" + totalTime / 1000 + "</p>");
 
-  
-  let timer = setInterval(function(){
+
+  let timer = setInterval(function () {
     time += 1000;
-    $("#timer").html( (totalTime - time) / 1000);
-    if(time >= totalTime) {
+    $("#timer").html((totalTime - time) / 1000);
+    if (time >= totalTime) {
       clearInterval(timer);
 
       $("#timer").hide();
       $("#teach").append("<button id='goToQuiz' class='btn btn-secondary'>Take a Quiz!</button>")
 
-      $("#goToQuiz").click(function(){
+      $("#goToQuiz").click(function () {
         quiz();
       });
     }
-  },1000);
+  }, 1000);
 
 }
 
@@ -154,4 +171,7 @@ function quiz() {
 
 function quizFeedback() {
   console.log("quizFeedback");
+
+  console.log("quizSelf:", quizSelf);
+  console.log("quizOthers:", quizOthers);
 }
