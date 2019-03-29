@@ -42,9 +42,7 @@ function chooseStudent() {
 
 
 function instruction() {
-
   $("#player").show();
-
   loadVideo("YAyjVtHm418", startTime, endTime, 'large');
 }
 
@@ -105,7 +103,7 @@ function giveFeedback(questions, cor, words, whereTo) {
       .appendTo("#feedbackContainer");
 
   } else {
-    
+
     if (studentId === "stuA" && currentQuestions[qIndex].name.startsWith("grind") ||
       studentId === "stuB" && currentQuestions[qIndex].name.startsWith("hon")
     ) {
@@ -135,26 +133,58 @@ function talkInGroup() {
   let totalTime = 5000;
   console.log("talk in group");
 
-  $("#teach").html("Talk among your group about what you learned:")
-  $("#teach").append("<p></p>" + "<p></p>" + "<p></p>" + "<p></p>");
+  $("#teach").html("Talk among your group about what you learned, and make sure your group mates understand the following topics:")
 
-  $("#teach").append("<p id='timer'>" + totalTime / 1000 + "</p>");
+  let topics = [
+    "A",
+    "B",
+    "C",
+    "D"
+  ]
 
+  for (let i in topics) {
+    $("#teach")
+      .append('<div class="form-check">' +
+        '<input type="checkbox" class="form-check-input">' +
+        '<label class="form-check-label" for="exampleCheck1">' + topics[i] + '</label>' +
+        '</div>')
+  }
 
-  let timer = setInterval(function () {
-    time += 1000;
-    $("#timer").html((totalTime - time) / 1000);
-    if (time >= totalTime) {
-      clearInterval(timer);
+  $(".form-check").click(function () {
+    let checked = $('input[type=checkbox]:checked').siblings().text();
+    console.log(checked);
 
-      $("#timer").hide();
+    if (checked === topics.join("")) {
       $("#teach").append("<button id='goToQuiz' class='btn btn-secondary'>Take a Quiz!</button>")
 
       $("#goToQuiz").click(function () {
         quiz();
       });
+
     }
-  }, 1000);
+
+  });
+
+
+  // $("#teach").append("<p id='timer'>" + totalTime / 1000 + "</p>");
+
+
+  // let timer = setInterval(function () {
+  //   time += 1000;
+  //   $("#timer").html((totalTime - time) / 1000);
+  //   if (time >= totalTime) {
+  //     clearInterval(timer);
+
+  //     $("#timer").hide();
+  //     $("#teach").append("<button id='goToQuiz' class='btn btn-secondary'>Take a Quiz!</button>")
+
+  //     $("#goToQuiz").click(function () {
+  //       quiz();
+  //     });
+  //   }
+  // }, 1000);
+
+
 
 }
 
@@ -175,13 +205,15 @@ function quizFeedback() {
   console.log("quizOthers:", quizOthers);
 
   let selfScore = 0, othersScore = 0;
+  let selfPoints = 10, othersPoints = 20;
+  let bonus = 0;
 
   for (let i in quizSelf) {
-    if (quizSelf[i] === "true") selfScore += 10
+    if (quizSelf[i] === "true") selfScore += selfPoints
   }
   for (let i in quizOthers) {
-    if (quizOthers[i] === "true") othersScore += 20
+    if (quizOthers[i] === "true") othersPoints += 20
   }
 
-  console.log("score", selfScore + othersScore);
+  console.log("score", selfScore + othersScore + bonus);
 }
