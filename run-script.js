@@ -214,10 +214,12 @@ function quizFeedback() {
   console.log("quizFeedback");
   console.log("quizSelf:", quizSelf);
   console.log("quizOthers:", quizOthers);
-
+  $("#section").html("Feedback!");
   let selfScore = 0, othersScore = 0;
   let selfPoints = 10, othersPoints = 20;
   let bonus = 0;
+
+  let selfFeedback = "", othersFeedback = ""
 
   for (let i in quizSelf) {
     if (quizSelf[i] === "true") selfScore += selfPoints
@@ -227,4 +229,20 @@ function quizFeedback() {
   }
 
   console.log("score", selfScore + othersScore + bonus);
+  if(selfScore<40){
+    selfFeedback = "You made some mistakes on the video that was assigned to you. Make sure you check the video again and test your understanding."
+  } else {
+    selfFeedback = "Good work on your part!"
+  }
+
+  if (othersScore < 120) {
+    othersFeedback = "It seemed that your group mate didn't teach you well. Make sure you understand the other part of the video!"
+  } else if (othersScore < 160) {
+    othersFeedback = "Nice work on the teaching in your group! However, there are a few points that your group mate didn't teach you well. Why not try again?"
+  } else {
+    othersFeedback = "Nice job!"
+  }
+  $("#feedbackContainer").empty().show();
+  $("#feedbackContainer").append("<h6>"+selfFeedback+"</h6>");
+  $("#feedbackContainer").append("<h6>"+othersFeedback+"</h6>");
 }
