@@ -16,6 +16,7 @@ $(document).ready(function () {
 
 function chooseStudent() {
   scene = 1;
+  $("#section").html("Select Role")
   $("#player").hide();
   stopVideo();
 
@@ -42,11 +43,13 @@ function chooseStudent() {
 
 
 function instruction() {
+  $("#section").html("Watch a Video");
   $("#player").show();
   loadVideo("YAyjVtHm418", startTime, endTime, 'large');
 }
 
 function checkUnderstanding() {
+  $("#section").html("Check Your Understanding");
   console.log("quiz01");
   $("#player").hide();
   // console.log(expertQuizQuestions);
@@ -65,6 +68,7 @@ function makeQuestion(questions) {
       id: b.id,
       text: b.description,
     })
+      .addClass("btn btn-outline-secondary options")
       .attr("onClick", "giveFeedback(\"" + questions + "\",\"" + b.answer + "\",\"" + b.feedback + "\",\"" + b.whereTo + "\")")
       .appendTo("#buttonContainer")
 
@@ -76,21 +80,17 @@ function makeQuestion(questions) {
 
 }
 
-// function makeButtons(questions) {
-
-// }
-
 function giveFeedback(questions, cor, words, whereTo) {
   console.log("feedback", JSON.stringify(questions));
   $("#questionContainer").hide()
 
   if (!inQuiz) {
     if (cor === 'true') {
-      $("<h1/>", { text: "Correct!" })
+      $("<h3/>", { text: "Correct!" })
         .css('background-color', '#99ff99')
         .appendTo("#feedbackContainer");
     } else {
-      $("<h1/>", { text: "That's not correct..." })
+      $("<h3/>", { text: "That's not correct..." })
         .css('background-color', '#ff6699')
         .appendTo("#feedbackContainer");
 
@@ -100,6 +100,7 @@ function giveFeedback(questions, cor, words, whereTo) {
 
     $("<button/>", { text: "Continue" })
       .attr("onClick", "clearFeedback(\"" + questions + "\")")
+      .addClass("btn btn-outline-secondary")
       .appendTo("#feedbackContainer");
 
   } else {
@@ -129,11 +130,10 @@ function clearFeedback(questions) {
 }
 
 function talkInGroup() {
-  let time = 0;
-  let totalTime = 5000;
+  $("#section").html("Talk among Each Other");
   console.log("talk in group");
 
-  $("#teach").html("Talk among your group about what you learned, and make sure your group mates understand the following topics:")
+  $("#teach").html("<h3>Talk among your group about what you learned, and make sure your group mates understand the following topics:</h3>")
 
   let topics = [
     "A",
@@ -155,18 +155,16 @@ function talkInGroup() {
     console.log(checked);
 
     if (checked === topics.join("")) {
-      $("#teach").append("<button id='goToQuiz' class='btn btn-secondary'>Take a Quiz!</button>")
-
+      $("#teach").append("<button id='goToQuiz' class='btn btn-outline-secondary'>Take a Quiz!</button>");
       $("#goToQuiz").click(function () {
         quiz();
       });
-
     }
-
   });
 }
 
 function quiz() {
+  $("#section").html("Quiz Time!");
   inQuiz = true;
   qIndex = 0;
   console.log("doing quiz");
@@ -190,7 +188,7 @@ function quizFeedback() {
     if (quizSelf[i] === "true") selfScore += selfPoints
   }
   for (let i in quizOthers) {
-    if (quizOthers[i] === "true") othersPoints += 20
+    if (quizOthers[i] === "true") othersScore += othersPoints
   }
 
   console.log("score", selfScore + othersScore + bonus);
