@@ -164,28 +164,6 @@ function talkInGroup() {
     }
 
   });
-
-
-  // $("#teach").append("<p id='timer'>" + totalTime / 1000 + "</p>");
-
-
-  // let timer = setInterval(function () {
-  //   time += 1000;
-  //   $("#timer").html((totalTime - time) / 1000);
-  //   if (time >= totalTime) {
-  //     clearInterval(timer);
-
-  //     $("#timer").hide();
-  //     $("#teach").append("<button id='goToQuiz' class='btn btn-secondary'>Take a Quiz!</button>")
-
-  //     $("#goToQuiz").click(function () {
-  //       quiz();
-  //     });
-  //   }
-  // }, 1000);
-
-
-
 }
 
 function quiz() {
