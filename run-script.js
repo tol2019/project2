@@ -168,10 +168,9 @@ function talkInGroup() {
   $("#teach").html("<h3>Talk among your group about what you learned, and make sure your group mates understand the following topics:</h3>")
 
   let topics = [
-    "A",
-    "B",
-    "C",
-    "D"
+    "How your sharpening mechanism works",
+    "Use cases for your sharpening technique",
+    "Misconceptions held about your sharpening technique"
   ]
 
   for (let i in topics) {
@@ -205,6 +204,7 @@ function quiz() {
   console.log("doing quiz");
 
   $("#teach").hide();
+  $("#feedbackContainer").hide();
   console.log(questions);
   currentQuestions = questions;
   makeQuestion(currentQuestions);
@@ -229,13 +229,13 @@ function quizFeedback() {
   }
 
   console.log("score", selfScore + othersScore + bonus);
-  if(selfScore<40){
+  if (selfScore < 40) {
     selfFeedback = "You made some mistakes on the video that was assigned to you. Make sure you check the video again and test your understanding."
   } else {
     selfFeedback = "Good work on your part!"
   }
 
-  if (othersScore < 120) {
+  if (othersScore < 100) {
     othersFeedback = "It seemed that your group mate didn't teach you well. Make sure you understand the other part of the video!"
   } else if (othersScore < 160) {
     othersFeedback = "Nice work on the teaching in your group! However, there are a few points that your group mate didn't teach you well. Why not try again?"
@@ -243,6 +243,16 @@ function quizFeedback() {
     othersFeedback = "Nice job!"
   }
   $("#feedbackContainer").empty().show();
-  $("#feedbackContainer").append("<h6>"+selfFeedback+"</h6>");
-  $("#feedbackContainer").append("<h6>"+othersFeedback+"</h6>");
+  $("#feedbackContainer").append("<h6>Score on self: " + selfScore + " out of 40</h6>");
+  $("#feedbackContainer").append("<h6>" + selfFeedback + "</h6>");
+  $("#feedbackContainer").append("<h6>Score on others: " + othersScore + " out of 160</h6>");
+  $("#feedbackContainer").append("<h6>" + othersFeedback + "</h6>");
+
+  if(othersScore < 160 ){
+    $("#feedbackContainer").append("<button id='quizAgain' class='btn btn-outline-secondary'>Take the Quiz Again!</button>");
+    $("#quizAgain").click(quiz);
+  }
+
+  
+  
 }

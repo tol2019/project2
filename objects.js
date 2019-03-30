@@ -401,7 +401,7 @@ let questions = [
                 "id": "b1",
                 "image": "",
                 "description": "The friction would sharpen the knife",
-                "answer": true,
+                "answer": false,
                 "feedback": "Incorrect. Friction would more likely aid in making the knife more dull in this case.",
                 "whereTo": ""
             },
@@ -425,7 +425,7 @@ let questions = [
                 "id": "b4",
                 "image": "",
                 "description": "The point would not be bent back into alignment",
-                "answer": false,
+                "answer": true,
                 "feedback": "Correct",
                 "whereTo": ""
             }
