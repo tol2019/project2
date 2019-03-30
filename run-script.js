@@ -5,6 +5,7 @@ let finalQuizQuestions = {};
 let startTime = 0;
 let endTime = 0;
 let qIndex = 0;
+let inIntro = true;
 let inQuiz = false;
 let quizSelf = [];
 let quizOthers = [];
@@ -14,12 +15,24 @@ $(document).ready(function () {
   $("#player").hide();
   $("#teach").hide();
   $("#feedbackContainer").hide();
+  $("#studentId").hide();
 });
+
+function introduction() {
+  scene = 1;
+  $("#intro").show();
+  qIndex = 0;
+  currentQuestions = introductionScripts;
+  makeQuestion(currentQuestions);
+  stopVideo();
+}
 
 function chooseStudent() {
   scene = 1;
   $("#section").html("Select Role")
   $("#player").hide();
+  $("#studentId").show();
+  $("#intro").hide();
   stopVideo();
 
   $(".studentId div button").click(function () {
@@ -87,7 +100,7 @@ function giveFeedback(questions, cor, words, whereTo) {
   $("#questionContainer").hide()
   $("#feedbackContainer").show();
 
-  if (!inQuiz) {
+  if (!inQuiz && !inIntro) {
     if (cor === 'true') {
       $("<h3/>", { text: "Correct!" })
         .css('background-color', '#99ff99')
@@ -106,6 +119,8 @@ function giveFeedback(questions, cor, words, whereTo) {
       .addClass("btn btn-outline-secondary")
       .appendTo("#feedbackContainer");
 
+  } else if (inIntro) {
+    clearFeedback();
   } else {
 
     if (studentId === "stuA" && currentQuestions[qIndex].name.startsWith("grind") ||
@@ -128,7 +143,8 @@ function clearFeedback(questions) {
   qIndex += 1;
   if (qIndex < currentQuestions.length) {
     makeQuestion(currentQuestions);
-  } else if (!inQuiz) talkInGroup();
+  } else if (inIntro) { inIntro = false; chooseStudent(); }
+  else if (!inQuiz) talkInGroup();
   else if (inQuiz) quizFeedback();
 }
 
@@ -158,13 +174,13 @@ function talkInGroup() {
   $(".form-check").click(function () {
     let checked = $('input[type=checkbox]:checked').siblings().text();
     console.log(checked);
-    
-    
+
+
     if (checked === topics.join("")) {
       $("#goToQuiz").show().click(function () {
         quiz();
       });
-    }else{
+    } else {
       $("#goToQuiz").hide();
     }
   });

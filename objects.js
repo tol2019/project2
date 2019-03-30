@@ -42,6 +42,93 @@ let template = {
     ]
 }
 
+let introductionScripts = [
+    {
+        "name": "intro",
+        "text": "Today we will learn about how knife sharpeners work.",
+        "buttons": [
+            {
+                "id": "b1",
+                "image": "",
+                "description": "Continue",
+                "answer": true,
+                "feedback": "",
+                "whereTo": ""
+            }
+        ]
+    },
+    {
+        "name": "intro",
+        "text": "You will be learning in two groups",
+        "buttons": [
+            {
+                "id": "b1",
+                "image": "",
+                "description": "Continue",
+                "answer": true,
+                "feedback": "",
+                "whereTo": ""
+            }
+        ]
+    },
+    {
+        "name": "intro",
+        "text": "Each group will watch a video, covering different part of today's task. You will be in charge of teaching your group mate about what you will have learned.",
+        "buttons": [
+            {
+                "id": "b1",
+                "image": "",
+                "description": "Continue",
+                "answer": true,
+                "feedback": "",
+                "whereTo": ""
+            }
+        ]
+    },
+    {
+        "name": "intro",
+        "text": "Before you teach each other, you will have a chance to check your understandings.",
+        "buttons": [
+            {
+                "id": "b1",
+                "image": "",
+                "description": "Continue",
+                "answer": true,
+                "feedback": "",
+                "whereTo": ""
+            }
+        ]
+    },
+    {
+        "name": "intro",
+        "text": "Then you will take a quiz on both parts of today's learning task.",
+        "buttons": [
+            {
+                "id": "b1",
+                "image": "",
+                "description": "Continue",
+                "answer": true,
+                "feedback": "",
+                "whereTo": ""
+            }
+        ]
+    },
+    {
+        "name": "intro",
+        "text": "Without further ado, let's begin!",
+        "buttons": [
+            {
+                "id": "b1",
+                "image": "",
+                "description": "Continue",
+                "answer": true,
+                "feedback": "",
+                "whereTo": ""
+            }
+        ]
+    }
+]
+
 let questions = [
     {
         "name": "grinding01",

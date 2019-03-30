@@ -45,7 +45,8 @@ function onPlayerStateChange(event) {
   // }
   switch(scene) {
     case 0:
-      chooseStudent();
+      // chooseStudent();
+      introduction();
       break;
     case 2:
       checkUnderstanding();
