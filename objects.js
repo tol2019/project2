@@ -375,7 +375,7 @@ let questions = [
                 "id": "b1",
                 "image": "",
                 "description": "Grinding",
-                "answer": true,
+                "answer": false,
                 "feedback": "Incorrect. If you only ever grind your knife, it will eventually consume the knife in the same way that a pencil always gets smaller when sharpened.",
                 "whereTo": ""
             },
@@ -383,7 +383,7 @@ let questions = [
                 "id": "b2",
                 "image": "",
                 "description": "Honing",
-                "answer": false,
+                "answer": true,
                 "feedback": "Correct",
                 "whereTo": ""
             }
@@ -398,9 +398,9 @@ let questions = [
             {
                 "id": "b1",
                 "image": "",
-                "description": "The knife has no point at all and needs grinding to make a new point",
-                "answer": true,
-                "feedback": "Correct",
+                "description": "The knife cannot be grinded down but can get sharper",
+                "answer": false,
+                "feedback": "Incorrect. All knives can be sharpened with grinding.",
                 "whereTo": ""
             },
             {
@@ -422,9 +422,9 @@ let questions = [
             {
                 "id": "b4",
                 "image": "",
-                "description": "The knife cannot be grinded down but can get sharper",
-                "answer": false,
-                "feedback": "Incorrect. All knives can be sharpened with grinding.",
+                "description": "The knife has no point at all and needs grinding to make a new point",
+                "answer": true,
+                "feedback": "Correct",
                 "whereTo": ""
             }
         ]
@@ -436,7 +436,7 @@ let questions = [
             {
                 "id": "b1",
                 "image": "",
-                "description": "The bent point would eventually be pushed back into alignment",
+                "description": "The bent point would eventually be removed until a new point is formed",
                 "answer": true,
                 "feedback": "Incorrect. Grinding does not realign points.",
                 "whereTo": ""
@@ -444,7 +444,7 @@ let questions = [
             {
                 "id": "b2",
                 "image": "",
-                "description": "The bent point would eventually be removed until a new point is formed",
+                "description": "The bent point would eventually be pushed back into alignment",
                 "answer": false,
                 "feedback": "Correct",
                 "whereTo": ""
