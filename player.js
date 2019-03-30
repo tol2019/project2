@@ -15,14 +15,14 @@ var player;
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
     videoId: 'YAyjVtHm418',
-    playerVars: { 'autoplay': 0, 'wmode': 'transparent', 'controls': 0, 'rel': 0, 'modestbranding': 1, 'showinfo': 0 },
+    playerVars: { 'autoplay': 0, 'wmode': 'transparent', 'controls': 1, 'rel': 0, 'modestbranding': 1, 'showinfo': 0 },
     events: {
       'onReady': onPlayerReady,
       'onStateChange': onPlayerStateChange,
     }
   });
-  document.getElementById('player').style['z-index'] = -10;
-  document.getElementById('player').style['-webkit-transform'] = 'translateZ(0)';
+  // document.getElementById('player').style['z-index'] = -10;
+  // document.getElementById('player').style['-webkit-transform'] = 'translateZ(0)';
 }
 
 // 4. The API will call this function when the video player is ready.
@@ -43,19 +43,19 @@ function onPlayerStateChange(event) {
   //     var scene = getScene("scene1");
   //     run(scene)
   // }
-  switch(scene) {
+  switch (scene) {
     case 0:
       // chooseStudent();
       introduction();
       break;
-    case 2:
+    case 3:
       checkUnderstanding();
       break;
 
     default:
       console.log("other scenes");
   }
-  
+
   console.log(event);
 }
 
@@ -109,13 +109,14 @@ function calculateTime(start, end, videoLength) {
 
     // if (length >= videoLength || player.getCurrentTime() >= end) {
     if (player.getCurrentTime() >= end) {
-      
+
       stopVideo();
 
       clearInterval(interval);
       console.log("interval cleared");
 
-      if (scene === 1) scene = 2;
+      if (scene === 1) { scene = 2; introductionText(); }
+      else if (scene === 2) {scene = 3;}
 
     }
 

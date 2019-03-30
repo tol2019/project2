@@ -12,6 +12,7 @@ let quizOthers = [];
 
 $(document).ready(function () {
   // $("#button-container").hide();
+  $("#intro").hide();
   $("#player").hide();
   $("#teach").hide();
   $("#feedbackContainer").hide();
@@ -20,15 +21,23 @@ $(document).ready(function () {
 
 function introduction() {
   scene = 1;
+  // $("#intro").show();
+  $("#player").show();
+  startTime = 0;
+  endTime = 36;
+  loadVideo("YAyjVtHm418", startTime, endTime, 'large');
+}
+
+function introductionText() {
+  $("#player").hide();
   $("#intro").show();
   qIndex = 0;
   currentQuestions = introductionScripts;
   makeQuestion(currentQuestions);
-  stopVideo();
 }
 
 function chooseStudent() {
-  scene = 1;
+  scene = 2;
   $("#section").html("Select Role")
   $("#player").hide();
   $("#studentId").show();
@@ -38,14 +47,14 @@ function chooseStudent() {
   $(".studentId div button").click(function () {
     if (this.id === "stuA") {
       studentId = "stuA";
-      startTime = 120;
-      endTime = 122;
+      startTime = 0;
+      endTime = 86; // 86
       currentQuestions = questions.filter(i => i.name.substr(0, 5) === "grind");
       console.log(expertQuizQuestions);
     } else if (this.id === "stuB") {
       studentId = "stuB";
-      startTime = 140;
-      endTime = 142;
+      startTime = 88;
+      endTime = 155; //121
       currentQuestions = questions.filter(i => i.name.substr(0, 6) === "honing");
     } else {
 
@@ -60,7 +69,8 @@ function chooseStudent() {
 function instruction() {
   $("#section").html("Watch a Video");
   $("#player").show();
-  loadVideo("YAyjVtHm418", startTime, endTime, 'large');
+  loadVideo("gUH_GA-L-MM", startTime, endTime, 'large');
+  // scene = 3;
 }
 
 function checkUnderstanding() {
@@ -68,6 +78,8 @@ function checkUnderstanding() {
   console.log("quiz01");
   $("#player").hide();
   // console.log(expertQuizQuestions);
+  qIndex = 0;
+  console.log(currentQuestions);
   makeQuestion(currentQuestions);
 }
 

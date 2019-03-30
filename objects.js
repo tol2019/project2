@@ -73,7 +73,7 @@ let introductionScripts = [
     },
     {
         "name": "intro",
-        "text": "Each group will watch a video, covering different part of today's task. You will be in charge of teaching your group mate about what you will have learned.",
+        "text": "Each group will watch a video covering different part of today's task. You will be in charge of teaching your group mate about what you will be learning.",
         "buttons": [
             {
                 "id": "b1",
@@ -101,7 +101,7 @@ let introductionScripts = [
     },
     {
         "name": "intro",
-        "text": "Then you will take a quiz on both parts of today's learning task.",
+        "text": "After the teaching, you will take a quiz on both parts of today's learning task.",
         "buttons": [
             {
                 "id": "b1",
