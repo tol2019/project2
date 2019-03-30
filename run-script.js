@@ -12,6 +12,8 @@ let quizOthers = [];
 $(document).ready(function () {
   // $("#button-container").hide();
   $("#player").hide();
+  $("#teach").hide();
+  $("#feedbackContainer").hide();
 });
 
 function chooseStudent() {
@@ -83,6 +85,7 @@ function makeQuestion(questions) {
 function giveFeedback(questions, cor, words, whereTo) {
   console.log("feedback", JSON.stringify(questions));
   $("#questionContainer").hide()
+  $("#feedbackContainer").show();
 
   if (!inQuiz) {
     if (cor === 'true') {
@@ -121,7 +124,7 @@ function giveFeedback(questions, cor, words, whereTo) {
 
 function clearFeedback(questions) {
   console.log("feedback", questions);
-  $("#feedbackContainer").empty();
+  $("#feedbackContainer").empty().hide();
   qIndex += 1;
   if (qIndex < currentQuestions.length) {
     makeQuestion(currentQuestions);
@@ -130,6 +133,7 @@ function clearFeedback(questions) {
 }
 
 function talkInGroup() {
+  $("#teach").show();
   $("#section").html("Talk among Each Other");
   console.log("talk in group");
 
@@ -149,16 +153,19 @@ function talkInGroup() {
         '<label class="form-check-label" for="exampleCheck1">' + topics[i] + '</label>' +
         '</div>')
   }
-
+  $("#teach").append("<button id='goToQuiz' class='btn btn-outline-secondary'>Take a Quiz!</button>");
+  $("#goToQuiz").hide();
   $(".form-check").click(function () {
     let checked = $('input[type=checkbox]:checked').siblings().text();
     console.log(checked);
-
+    
+    
     if (checked === topics.join("")) {
-      $("#teach").append("<button id='goToQuiz' class='btn btn-outline-secondary'>Take a Quiz!</button>");
-      $("#goToQuiz").click(function () {
+      $("#goToQuiz").show().click(function () {
         quiz();
       });
+    }else{
+      $("#goToQuiz").hide();
     }
   });
 }
