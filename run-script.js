@@ -67,7 +67,11 @@ function chooseStudent() {
 
 
 function instruction() {
-  $("#section").html("Watch a Video");
+  if(studentId==="stuA"){
+    $("#section").html("Learn Grinding");
+  } else if (studentId === "stuB"){
+    $("#section").html("Learn Honing");
+  }
   $("#player").show();
   loadVideo("gUH_GA-L-MM", startTime, endTime, 'large');
   // scene = 3;
@@ -144,8 +148,6 @@ function giveFeedback(questions, cor, words, whereTo) {
     }
     clearFeedback();
   }
-
-
 }
 
 
@@ -161,8 +163,9 @@ function clearFeedback(questions) {
 }
 
 function talkInGroup() {
+  $("#feedbackContainer").hide();
   $("#teach").show();
-  $("#section").html("Talk among Each Other");
+  $("#section").html("Talk with Each Other");
   console.log("talk in group");
 
   $("#teach").html("<h3>Talk among your group about what you learned, and make sure your group mates understand the following topics:</h3>")
@@ -251,9 +254,7 @@ function quizFeedback() {
 
   if(othersScore < 160 ){
     $("#feedbackContainer").append("<button id='quizAgain' class='btn btn-outline-secondary'>Return to Teaching</button>");
-
-    // TODO - turn this into return to checklist, not quiz.
-    $("#quizAgain").click(quiz);
+    $("#quizAgain").click(talkInGroup);
 
   }
  
