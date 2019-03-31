@@ -168,8 +168,11 @@ function talkInGroup() {
   $("#teach").html("<h3>Talk among your group about what you learned, and make sure your group mates understand the following topics:</h3>")
 
   let topics = [
-    "How your sharpening mechanism works",
-    "Use cases for your sharpening technique",
+    "The name of your technique",
+    "The shape of the device (grinder or steel)",
+    "Why your technique does or does not result in particles on the knife",
+    "What condition of the knife does your technique fix",
+    "What happens to the knife during use of the device",
     "Misconceptions held about your sharpening technique"
   ]
 
@@ -248,9 +251,10 @@ function quizFeedback() {
 
   if(othersScore < 160 ){
     $("#feedbackContainer").append("<button id='quizAgain' class='btn btn-outline-secondary'>Return to Teaching</button>");
-    $("#quizAgain").click(quiz);
-  }
 
-  
-  
+    // TODO - turn this into return to checklist, not quiz.
+    $("#quizAgain").click(quiz);
+
+  }
+ 
 }
