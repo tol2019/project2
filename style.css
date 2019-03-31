@@ -33,7 +33,7 @@ body {
   padding-top: 50px;
 }
 
-#questionContainer, #buttonContainer, #teach, #feedbackContainer {
+#questionContainer, #buttonContainer, #feedbackContainer {
   padding: 20px;
   display: flex;
   flex-direction: column;
