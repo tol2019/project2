@@ -45,7 +45,7 @@ let template = {
 let introductionScripts = [
     {
         "name": "intro",
-        "text": "Today we will learn about how knife sharpeners work.",
+        "text": "Today we will learn how different knife sharpeners work. We will learn two techniques, Honing and Grinding. ",
         "buttons": [
             {
                 "id": "b1",
@@ -59,7 +59,7 @@ let introductionScripts = [
     },
     {
         "name": "intro",
-        "text": "You will be learning in two groups",
+        "text": "You will be learning in teams of two. One will learn Honing, the other Grinding. Then you will teach each other.",
         "buttons": [
             {
                 "id": "b1",
@@ -73,7 +73,7 @@ let introductionScripts = [
     },
     {
         "name": "intro",
-        "text": "Each group will watch a video covering different part of today's task. You will be in charge of teaching your group mate about what you will be learning.",
+        "text": "Before you teach each other, you will have a chance to check your own understanding. After that you will take a quiz on both techniques.",
         "buttons": [
             {
                 "id": "b1",
@@ -87,40 +87,12 @@ let introductionScripts = [
     },
     {
         "name": "intro",
-        "text": "Before you teach each other, you will have a chance to check your understandings.",
+        "text": "Ready?",
         "buttons": [
             {
                 "id": "b1",
                 "image": "",
-                "description": "Continue",
-                "answer": true,
-                "feedback": "",
-                "whereTo": ""
-            }
-        ]
-    },
-    {
-        "name": "intro",
-        "text": "After the teaching, you will take a quiz on both parts of today's learning task.",
-        "buttons": [
-            {
-                "id": "b1",
-                "image": "",
-                "description": "Continue",
-                "answer": true,
-                "feedback": "",
-                "whereTo": ""
-            }
-        ]
-    },
-    {
-        "name": "intro",
-        "text": "Without further ado, let's begin!",
-        "buttons": [
-            {
-                "id": "b1",
-                "image": "",
-                "description": "Continue",
+                "description": "BEGIN!",
                 "answer": true,
                 "feedback": "",
                 "whereTo": ""
@@ -313,8 +285,6 @@ let questions = [
             }
         ]
     },
-
-
     {
         "name": "honing02",
         "text": "Why doesn’t a steel produce particles?",
@@ -392,7 +362,6 @@ let questions = [
             }
         ]
     },
-
     {
         "name": "honing04",
         "text": "Imagine you were to hold a knife perpendicular to the steel and try to use it to sharpen. Which of the following is true?",

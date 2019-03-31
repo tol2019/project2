@@ -238,18 +238,16 @@ function quizFeedback() {
   if (othersScore < 100) {
     othersFeedback = "It seemed that your group mate didn't teach you well. Make sure you understand the other part of the video!"
   } else if (othersScore < 160) {
-    othersFeedback = "Nice work on the teaching in your group! However, there are a few points that your group mate didn't teach you well. Why not try again?"
+    othersFeedback = "Nice work on teaching in your group! However, there are a few points that your group mate didn't teach you well. You should teach each other again and retry the quiz."
   } else {
     othersFeedback = "Nice job!"
   }
   $("#feedbackContainer").empty().show();
-  $("#feedbackContainer").append("<h6>Score on self: " + selfScore + " out of 40</h6>");
   $("#feedbackContainer").append("<h6>" + selfFeedback + "</h6>");
-  $("#feedbackContainer").append("<h6>Score on others: " + othersScore + " out of 160</h6>");
   $("#feedbackContainer").append("<h6>" + othersFeedback + "</h6>");
 
   if(othersScore < 160 ){
-    $("#feedbackContainer").append("<button id='quizAgain' class='btn btn-outline-secondary'>Take the Quiz Again!</button>");
+    $("#feedbackContainer").append("<button id='quizAgain' class='btn btn-outline-secondary'>Return to Teaching</button>");
     $("#quizAgain").click(quiz);
   }
 
