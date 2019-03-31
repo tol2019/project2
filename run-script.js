@@ -67,6 +67,8 @@ function chooseStudent() {
 
 
 function instruction() {
+  $("#feedbackContainer").hide();
+
   if(studentId==="stuA"){
     $("#section").html("Learn Grinding");
   } else if (studentId === "stuB"){
@@ -168,7 +170,7 @@ function talkInGroup() {
   $("#section").html("Talk with Each Other");
   console.log("talk in group");
 
-  $("#teach").html("<h3>Talk among your group about what you learned, and make sure your group mates understand the following topics:</h3>")
+  $("#teach").html("<h3>Talk with your partner about what you learned, and make sure they understand the following topics:</h3>")
 
   let topics = [
     "The name of your technique",
@@ -186,7 +188,7 @@ function talkInGroup() {
         '<label class="form-check-label" for="exampleCheck1">' + topics[i] + '</label>' +
         '</div>')
   }
-  $("#teach").append("<button id='goToQuiz' class='btn btn-outline-secondary'>Take a Quiz!</button>");
+  $("#teach").append("<button id='goToQuiz' class='btn btn-outline-secondary'>Take a Quiz</button>");
   $("#goToQuiz").hide();
   $(".form-check").click(function () {
     let checked = $('input[type=checkbox]:checked').siblings().text();
@@ -204,7 +206,7 @@ function talkInGroup() {
 }
 
 function quiz() {
-  $("#section").html("Quiz Time!");
+  $("#section").html("Quiz");
   inQuiz = true;
   qIndex = 0;
   console.log("doing quiz");
@@ -236,25 +238,31 @@ function quizFeedback() {
 
   console.log("score", selfScore + othersScore + bonus);
   if (selfScore < 40) {
-    selfFeedback = "You made some mistakes on the video that was assigned to you. Make sure you check the video again and test your understanding."
+    selfFeedback = "You made some mistakes on the video that was assigned to you. You may want to revisit the video and try again."
   } else {
-    selfFeedback = "Good work on your part!"
+    selfFeedback = "Good work! You know your technique well."
   }
 
   if (othersScore < 100) {
-    othersFeedback = "It seemed that your group mate didn't teach you well. Make sure you understand the other part of the video!"
+    othersFeedback = "it seems that your partner may not have taught you well. Make sure you understand the other technique as well as your own."
   } else if (othersScore < 160) {
-    othersFeedback = "Nice work on teaching in your group! However, there are a few points that your group mate didn't teach you well. You should teach each other again and retry the quiz."
+    othersFeedback = "there are a few points you missed on the other technique. You should teach each other again and retry the quiz."
   } else {
-    othersFeedback = "Nice job!"
+    othersFeedback = "you clearly know how both grinding and honing work and when to use each."
   }
   $("#feedbackContainer").empty().show();
   $("#feedbackContainer").append("<h6>" + selfFeedback + "</h6>");
-  $("#feedbackContainer").append("<h6>" + othersFeedback + "</h6>");
+  $("#feedbackContainer").append("<h6> Also, " + othersFeedback + "</h6>");
 
   if(othersScore < 160 ){
-    $("#feedbackContainer").append("<button id='quizAgain' class='btn btn-outline-secondary'>Return to Teaching</button>");
+    $("#feedbackContainer").append("<button id='quizAgain' class='btn btn-outline-secondary'>Teach Each Other Again</button>");
     $("#quizAgain").click(talkInGroup);
+
+
+    // I think we should loop back to the instruction. This jumps me back to Check Understanding quiz, but skips past the video. 
+    // Looks like startTime and endTime are culprits here, and I don't want to mess up the timers. Got an easy fix? If not lets just relabel these to Learn Again or something...
+    // $("#feedbackContainer").append("<button id='videoAgain' class='btn btn-outline-secondary'>Watch Video Again</button>");
+    // $("#videoAgain").click(instruction);
 
   }
  

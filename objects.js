@@ -111,7 +111,7 @@ let questions = [
                 "image": "",
                 "description": "V",
                 "answer": true,
-                "feedback": "Correct!",
+                "feedback": "Correct! The pointed shape of this cross-section will grind the knife into a symmetrical point.",
                 "whereTo": ""
             },
             {
@@ -136,7 +136,7 @@ let questions = [
                 "description": "N",
                 "answer": false,
                 "feedback": "",
-                "whereTo": "Incorrect. This shape is pointed but asymmetrical that will unevenly grind your knife."
+                "whereTo": "Not quite. This shape is pointed, but it's asymmetrical and will unevenly grind your knife."
             }
         ]
     },
@@ -158,7 +158,7 @@ let questions = [
                 "image": "",
                 "description": "It removes material to make a point",
                 "answer": true,
-                "feedback": "Correct!",
+                "feedback": "Correct! Grinders <em>grind</em> the knife down until a new point is formed higher up the knife.",
                 "whereTo": ""
             },
             {
@@ -166,7 +166,7 @@ let questions = [
                 "image": "",
                 "description": "It adds material to create a point",
                 "answer": false,
-                "feedback": "Incorrect. This shape is not pointed so grinding in this shape will result in a flat knife that will not cut.",
+                "feedback": "Incorrect. No material is added during any sharpening process described here.",
                 "whereTo": ""
             },
             {
@@ -175,7 +175,7 @@ let questions = [
                 "description": "It heats the material back into a point with friction",
                 "answer": false,
                 "feedback": "",
-                "whereTo": "Incorrect. This shape is pointed but asymmetrical that will unevenly grind your knife."
+                "whereTo": "Incorrect. While technically some heat would be created from friction, even newly forged knives are not sharpened with heat."
             }
         ]
     },
@@ -188,7 +188,7 @@ let questions = [
                 "image": "",
                 "description": "It shaves off some materials in the sharpening process",
                 "answer": true,
-                "feedback": "Correct!",
+                "feedback": "Correct! Particles left on the knife were once part of the knife, having just been shaved off by the grinder.",
                 "whereTo": ""
             },
             {
@@ -218,7 +218,7 @@ let questions = [
                 "image": "",
                 "description": "Pasta Roller",
                 "answer": false,
-                "feedback": "",
+                "feedback": "Incorrect. A pasta roller flattens things and does not remove materials.",
                 "whereTo": ""
             },
             {
@@ -226,7 +226,7 @@ let questions = [
                 "image": "",
                 "description": "Pencil Sharpener",
                 "answer": true,
-                "feedback": "",
+                "feedback": "Correct! A pencil sharpener slowly works away material from the pencil to create a new point, just like a grinder.",
                 "whereTo": ""
             },
             {
@@ -256,7 +256,7 @@ let questions = [
                 "image": "",
                 "description": "Bent",
                 "answer": true,
-                "feedback": "Correct!",
+                "feedback": "Correct! A sharpening steel unbends bent knife points back into shape.",
                 "whereTo": ""
             },
             {
@@ -272,7 +272,7 @@ let questions = [
                 "image": "",
                 "description": "Round",
                 "answer": false,
-                "feedback": "Incorrect. A round point would not be able to be bent back into shape as a steel does.",
+                "feedback": "Incorrect. A round point wouldn't have a point at all.",
                 "whereTo": ""
             },
             {
@@ -292,7 +292,7 @@ let questions = [
             {
                 "id": "b1",
                 "image": "",
-                "description": "Particles get trapped in the steel rod",
+                "description": "Particles get caught in the middle of the steel rod",
                 "answer": false,
                 "feedback": "Incorrect. The steel rod is solid so there is no where for particles to get trapped.",
                 "whereTo": ""
@@ -302,7 +302,7 @@ let questions = [
                 "image": "",
                 "description": "The steel doesn’t shave off any materials",
                 "answer": true,
-                "feedback": "Correct",
+                "feedback": "Correct! Sharpening steels reshape the bent points of a knife.",
                 "whereTo": ""
             },
             {
@@ -349,7 +349,7 @@ let questions = [
                 "image": "",
                 "description": "Unbending a bent knife tip",
                 "answer": true,
-                "feedback": "Correct",
+                "feedback": "Correct! A sharpening steel realigns the tip by bending the knife point.",
                 "whereTo": ""
             },
             {
@@ -357,7 +357,7 @@ let questions = [
                 "image": "",
                 "description": "Making a new point",
                 "answer": false,
-                "feedback": "Incorrect. The steel does not make a new point, only realigns an existing point.",
+                "feedback": "Incorrect. The steel does not make a new point, it only realigns an existing point.",
                 "whereTo": ""
             }
         ]
@@ -377,9 +377,9 @@ let questions = [
             {
                 "id": "b2",
                 "image": "",
-                "description": "The knife would be sharper",
+                "description": "The knife would break",
                 "answer": false,
-                "feedback": "Incorrect. The knife would likely get more dull",
+                "feedback": "Incorrect. The knife would likely get more dull, but is not likely to break unless tremendous force is placed.",
                 "whereTo": ""
             },
             {
@@ -395,7 +395,7 @@ let questions = [
                 "image": "",
                 "description": "The point would not be bent back into alignment",
                 "answer": true,
-                "feedback": "Correct",
+                "feedback": "Correct! The gliding action works like a comb, realigning the blade.",
                 "whereTo": ""
             }
         ]
@@ -403,14 +403,14 @@ let questions = [
 
     {
         "name": "hg01",
-        "text": "You have a rectangular piece of metal and would like to turn it into a knife. Which method of sharpening should you choose?",
+        "text": "You have a rectangular piece of metal with no point and would like to turn it into a knife. Which method of sharpening should you choose?",
         "buttons": [
             {
                 "id": "b1",
                 "image": "",
                 "description": "Grinding",
                 "answer": true,
-                "feedback": "Correct.",
+                "feedback": "Correct. This block needs to be ground down to have a point.",
                 "whereTo": ""
             },
             {
@@ -418,7 +418,7 @@ let questions = [
                 "image": "",
                 "description": "Honing",
                 "answer": false,
-                "feedback": "Incorrect. Honing requires there to be a point that is misaligned.",
+                "feedback": "Incorrect. Honing requires there to be a point that is misaligned, this block does not have a point.",
                 "whereTo": ""
             }
         ]
@@ -440,7 +440,7 @@ let questions = [
                 "image": "",
                 "description": "Honing",
                 "answer": true,
-                "feedback": "Correct",
+                "feedback": "Correct! Honing your knife helps preserve the knife, as grinding will slowly remove material until the is no knife left!",
                 "whereTo": ""
             }
         ]
@@ -454,7 +454,7 @@ let questions = [
             {
                 "id": "b1",
                 "image": "",
-                "description": "The knife cannot be grinded down but can get sharper",
+                "description": "The knife cannot be grinded down but can get sharper some other way",
                 "answer": false,
                 "feedback": "Incorrect. All knives can be sharpened with grinding.",
                 "whereTo": ""
@@ -480,7 +480,7 @@ let questions = [
                 "image": "",
                 "description": "The knife has no point at all and needs grinding to make a new point",
                 "answer": true,
-                "feedback": "Correct",
+                "feedback": "Correct! If honing doesn't work that means there's no bent-tip at all, grinding will create a new tip.",
                 "whereTo": ""
             }
         ]
@@ -502,7 +502,7 @@ let questions = [
                 "image": "",
                 "description": "The bent point would eventually be pushed back into alignment",
                 "answer": false,
-                "feedback": "Correct",
+                "feedback": "Correct! Grinding removes materials from a knife which can be a bent tip or no tip at all.",
                 "whereTo": ""
             },
             {
