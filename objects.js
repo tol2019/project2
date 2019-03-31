@@ -158,7 +158,7 @@ let questions = [
                 "image": "",
                 "description": "It removes material to make a point",
                 "answer": true,
-                "feedback": "Correct! Grinders <em>grind</em> the knife down until a new point is formed higher up the knife.",
+                "feedback": "Correct! Grinders grind the knife down until a new point is formed higher up the knife.",
                 "whereTo": ""
             },
             {
