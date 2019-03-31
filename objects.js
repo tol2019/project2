@@ -249,7 +249,7 @@ let questions = [
     },
     {
         "name": "honing01",
-        "text": "What shape knife point will the steel sharpen?",
+        "text": "The sharpening steel will sharpen a knife with what point shape?",
         "buttons": [
             {
                 "id": "b1",
