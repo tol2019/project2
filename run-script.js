@@ -48,13 +48,13 @@ function chooseStudent() {
     if (this.id === "stuA") {
       studentId = "stuA";
       startTime = 0;
-      endTime = 86; // 86
+      endTime = 78; // 78
       currentQuestions = questions.filter(i => i.name.substr(0, 5) === "grind");
       console.log(expertQuizQuestions);
     } else if (this.id === "stuB") {
       studentId = "stuB";
       startTime = 88;
-      endTime = 155; //121
+      endTime = 155; 
       currentQuestions = questions.filter(i => i.name.substr(0, 6) === "honing");
     } else {
 
@@ -261,8 +261,12 @@ function quizFeedback() {
 
     // I think we should loop back to the instruction. This jumps me back to Check Understanding quiz, but skips past the video. 
     // Looks like startTime and endTime are culprits here, and I don't want to mess up the timers. Got an easy fix? If not lets just relabel these to Learn Again or something...
-    // $("#feedbackContainer").append("<button id='videoAgain' class='btn btn-outline-secondary'>Watch Video Again</button>");
-    // $("#videoAgain").click(instruction);
+    $("#feedbackContainer").append("<button id='videoAgain' class='btn btn-outline-secondary'>Watch Video Again</button>");
+
+    $("#videoAgain").click(function(){
+      scene = 2;  // set the scene so that it will stay at instruction.
+      instruction();
+    });
 
   }
  
