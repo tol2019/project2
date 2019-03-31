@@ -80,6 +80,11 @@ function instruction() {
 }
 
 function checkUnderstanding() {
+  if (studentId === "stuA") {
+    currentQuestions = questions.filter(i => i.name.substr(0, 5) === "grind");
+  } else if (studentId === "stuB") {
+    currentQuestions = questions.filter(i => i.name.substr(0, 6) === "honing");
+  } 
   $("#section").html("Check Your Understanding");
   console.log("quiz01");
   $("#player").hide();
@@ -140,6 +145,7 @@ function giveFeedback(questions, cor, words, whereTo) {
   } else if (inIntro) {
     clearFeedback();
   } else {
+    
 
     if (studentId === "stuA" && currentQuestions[qIndex].name.startsWith("grind") ||
       studentId === "stuB" && currentQuestions[qIndex].name.startsWith("hon")
@@ -257,14 +263,17 @@ function quizFeedback() {
   if(othersScore < 160 ){
     $("#feedbackContainer").append("<button id='quizAgain' class='btn btn-outline-secondary'>Teach Each Other Again</button>");
     $("#quizAgain").click(talkInGroup);
-
+    quizSelf = [];
+    quizOthers = [];
 
     // I think we should loop back to the instruction. This jumps me back to Check Understanding quiz, but skips past the video. 
     // Looks like startTime and endTime are culprits here, and I don't want to mess up the timers. Got an easy fix? If not lets just relabel these to Learn Again or something...
     $("#feedbackContainer").append("<button id='videoAgain' class='btn btn-outline-secondary'>Watch Video Again</button>");
 
     $("#videoAgain").click(function(){
+      $("#feedbackContainer").empty();
       scene = 2;  // set the scene so that it will stay at instruction.
+      inQuiz = false;
       instruction();
     });
 
